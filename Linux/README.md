@@ -46,7 +46,7 @@ su -
 
 ### 2. Автоматическая установка
 ```bash
-wget -O - https://raw.githubusercontent.com/SlippingForest/MoonTrader_install/master/Linux/install.sh | bash <(cat) </dev/tty
+wget -O - https://raw.githubusercontent.com/rogerbase/MoonTrader_install/refs/heads/master/Linux/install.sh | bash <(cat) </dev/tty
 ```
 
 ### 3. Запуск MoonTrader
