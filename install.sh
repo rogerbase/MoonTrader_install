@@ -627,10 +627,14 @@ configure_fail2ban() {
     fi
 
     local fail2ban_jail_config_lines=(
-        "[sshd]",
-        "port = ssh",
-        "findtime = 3600",
-        "maxretry = 3",
+        "[sshd]"
+        "enabled = true"
+        "port = ssh"
+        "filter = sshd"
+        "logpath = /var/log/auth.log"
+        "backend = auto"
+        "maxretry = 3"
+        "findtime = 3600"
         "bantime = 86400"
     )
 
