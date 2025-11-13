@@ -762,6 +762,17 @@ function setup_firewall() {
     fi
 }
 
+# Disable MOTD upgrade notifications
+function disable_motd_upgrades() {
+    log execution "$(extract_tips "h_install_packages_configure_start"): MOTD"
+
+    chmod -x /etc/update-motd.d/91-release-upgrade 2>/dev/null
+    chmod -x /etc/update-motd.d/90-updates-available 2>/dev/null
+
+    log success "$(extract_tips "h_install_packages_configure_complete"): MOTD"
+    return 0
+}
+
 # Enhanced MoonTrader installation function
 function install_mt() {
     local user=$1
@@ -1763,6 +1774,9 @@ main() {
             exit 1
         }
     fi
+
+    # Disable MOTD upgrade notifications
+    disable_motd_upgrades || log error "Failed to disable MOTD upgrade notifications"
 
     # Install MoonTrader FIRST (MTGuardian depends on it)
     install_mt "$DEFAULT_USER" "$DEFAULT_USER_DIRECTORY" "$SETUP_MT_LINK" || {
